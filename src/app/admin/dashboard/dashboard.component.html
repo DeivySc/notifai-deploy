@@ -1,0 +1,111 @@
+<div class="flex justify-start bg-gray-100 pb-5">
+    <div class="w-8/12">
+        <div class="bg-gray-300 h-64 w-auto ml-7 mr-2 mt-6 rounded-2xl flex justify-center items-center">
+            <div class="m-auto">Contenedor de video de Youtube</div>
+        </div>
+        <div class="mt-4">
+            <div class="ml-7 mr-2 flex justify-start">
+                <div class="font-bold text-lg">Ultimas campañas</div>
+                <div class="flex justify-start ml-5">
+                    <div class="text-sm ubuntu">VER MÁS</div>
+                    <div class="block pl-1">
+                        <mat-icon class="text-sm pb-2">north_east</mat-icon>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-start pt-2 ml-5">
+                <mat-card *ngFor="let campaign of campaigns" class="w-2/6 rounded-xl shadow-2xl mx-2">
+                    <div class="flex justify-between">
+                        <div class="text-base ubuntu">Nombre de la empresa</div>
+                        <div class="w-4 h-4 rounded-full bg-green-300 mt-1"></div>
+                    </div>
+                    <div class="ubuntu pt-3 text-xl">{{campaign.nombre}}</div>
+                    <div class="pt-5">
+                        <div class="umono font-bold text-sm leading-none">90/5000</div>
+                        <div class="umono font-bold text-sm leading-none">(25%)usuarios</div>
+                    </div>
+                    <div class="flex justify-between pt-4">
+                        <div class="block">
+                            <div class="umono text-sm leading-tight">Inicio: 11/02/21</div>
+                            <div class="umono text-sm leading-tight">Fin: 30/02/21</div>
+                        </div>
+                        <div class="flex flex-row">
+                            <button mat-icon-button class="focus:outline-none rounded-lg shadow-xl mx-2.5">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button class="focus:outline-none rounded-lg shadow-xl">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block pt-3 pb-3">
+                        <div class="text-xs ubuntu">Barrido: 1/2</div>
+                        <div matTooltip="Error 01 lorem ipsum dorel lorum lorem ipsum dorel lorumlorem ipsum dorel lorumlorem."
+                            class="bg-red-100 w-full rounded-full h-3 flex justify-between mt-1">
+                            <div class="bg-gray-300 w-4/6 rounded-full h-full flex justify-between">
+                                <div class="bg-red-500 w-2/6 rounded-full h-full text-center text-xs ubuntu">5%</div>
+                                <div class="w-4/6 text-center text-xs ubuntu">45%</div>
+                            </div>
+                            <div class="w-2/6 text-center text-xs ubuntu">50%</div>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+        <div class="mt-5">
+            <div class="ml-7 mr-2 font-bold text-lg">Performance</div>
+            <div class="flex justify-start mx-5 mt-2 h-8">
+                <button mat-stroked-button
+                    class="ubuntu font-normal text-base mx-2 bg-transparent rounded-xl text-red-500 h-full focus:outline-none">Hoy</button>
+                <button mat-stroked-button
+                    class="ubuntu font-normal text-base mx-2 bg-red-100 rounded-xl text-red-500 h-full focus:outline-none">Ayer</button>
+                <button mat-stroked-button
+                    class="ubuntu font-normal text-base mx-2 bg-transparent rounded-xl text-red-500 h-full focus:outline-none">Esta
+                    semana</button>
+                <button mat-stroked-button
+                    class="ubuntu font-normal text-base mx-2 bg-transparent rounded-xl text-red-500 h-full focus:outline-none">Hace
+                    2 semanas</button>
+                <button mat-stroked-button
+                    class="ubuntu font-normal text-base mx-2 bg-transparent rounded-xl text-red-500 h-full focus:outline-none">Hace
+                    1 mes</button>
+            </div>
+            <div class="flex justify-start ml-5 mt-4">
+                <mat-card *ngFor="let performance of performances" class="w-3/12 mx-2 pb-2 rounded-xl shadow-2xl">
+                    <div class="flex justify-between">
+                        <div class="text-6xl ubuntu">{{performance.balance}}</div>
+                        <div *ngIf="performance.tendency == 'up'; then thenBlock else elseBlock"></div>
+                        <ng-template #thenBlock>
+                            <div class="rounded-full bg-green-300 w-8 h-8 mt-1">
+                                <mat-icon class="text-2xl text-white ml-1">trending_up</mat-icon>
+                            </div>
+                        </ng-template>
+                        <ng-template #elseBlock>
+                            <div class="rounded-full bg-red-500 w-8 h-8 mt-1">
+                                <mat-icon class="text-2xl text-white ml-1">trending_down</mat-icon>
+                            </div>
+                        </ng-template>
+                    </div>
+                    <div class="ubuntu font-medium text-base mt-2 ml-2">{{performance.concept}}</div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    <div class="w-4/12 pt-6">
+        <mat-card class="rounded-xl shadow-2xl ml-2 mr-5 ">
+            <h6 class="ubuntu font-semibold ml-5 text-sm text-gray-500">Tipo de reporte</h6>
+            <h6 class="ubuntu font-medium ml-5 text-xl text-black">Deudas</h6>
+            <canvas baseChart height="220" [datasets]="barChartData" [labels]="barChartLabels"
+                [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend"
+                [colors]="barchartColors" [chartType]="barChartType">
+            </canvas>
+        </mat-card>
+        <mat-card class="rounded-xl shadow-2xl ml-2 mr-5  mt-6">
+            <h6 class="ubuntu font-semibold ml-5 text-sm text-gray-500">Tipo de reporte</h6>
+            <h6 class="ubuntu font-medium ml-5 text-xl text-black">Estado de deudas</h6>
+            <canvas baseChart height="220" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                [options]="pieChartOptions" [colors]="piechartColors" [plugins]="pieChartPlugins"
+                [legend]="pieChartLegend">
+            </canvas>
+        </mat-card>
+    </div>
+</div>

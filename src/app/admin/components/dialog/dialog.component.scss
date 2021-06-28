@@ -1,0 +1,83 @@
+::ng-deep .mat-horizontal-stepper-header-container {
+  white-space: nowrap;
+  display: none !important;
+  align-items: center;
+}
+.btn-select{
+  //opacity: 25%;
+  color: #D0D0D0;
+}
+
+.icon {
+  background: #7B7B7B;
+  border-radius: 100%;
+  border-width: 1px;
+}
+.iconselect{
+  background: #FF7575;
+  color: #e84545;
+}
+
+.iconunselect{
+  background: #F6F6F6;
+  color: #D0D0D0;
+}
+
+.btnselection{
+  background: white;
+  color: #2B2E4A;
+  opacity: 100%;
+  --tw-shadow: 0 5px 20px -12px rgba(225, 0, 0, 0.5)!important;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #e84545), var(--tw-ring-shadow, 0 0 #e84545), var(--tw-shadow)!important;
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: #43E771;
+}
+
+.mat-progress-bar {
+  border-radius: 10px;
+  height: 7px !important;
+}
+
+::ng-deep .mat-tab-label{
+  height: 102px;
+}
+
+::ng-deep .mat-form-field-outline-end {
+  border-radius: 0 10px 10px 0 !important;
+}
+
+
+:host {
+  > .container {
+    max-width: 1264px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    background: none;
+  }
+  ::ng-deep {
+    .mat-tab-group {
+      flex-direction: row;
+    }
+    .mat-tab-header {
+      border-bottom: none;
+    }
+    .mat-tab-header-pagination {
+      display: none !important;
+    }
+    .mat-tab-labels {
+      flex-direction: column;
+      height: 102px;
+    }
+    .mat-ink-bar {
+      height: 100%;
+      left: 98% !important;
+    }
+    .mat-tab-body-wrapper {
+      flex: 1 1 auto;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+<div class="ubuntu mt-8 ml-5 overflow-hidden">
+    <p class="w-1/2">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat
+        duis enim velit
+        mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+    <div class="flex flex-row">
+        <div class="" style="width: 28%;">
+            <h4 class="text-3xl my-7">Entidades </h4>
+            <p class="umono text-lg">Selecciona tu entidad</p>
+            <mat-select placeholder="Entidades"
+                class="shadow w-56 h-11 border text-center font-medium ubuntu text-sm mb-10 mt-1"
+                style="border-radius: 5px; padding-top: 13px; padding-right: 8px;">
+                <mat-option value="one">Entidad 01</mat-option>
+                <mat-option value="two">Entidad 02</mat-option>
+            </mat-select>
+            <div style=" height: calc(100vh + 12rem); overflow-y: auto; scrollbar-width: thin;">
+                <div *ngFor="let entity of entities">
+                    <app-performance-cards [entity]="entity" [selected]="entity.id === selectedCardId"
+                        (selectCardEvent)="getShowElements($event)"></app-performance-cards>
+                </div>
+            </div>
+        </div>
+        <div class="ml-5" style="width: 72%; position: relative; ">
+            <h4 class="text-3xl my-7">Campañas</h4>
+            <div class="mt-16 pb-8 flex items-center">
+                <button mat-stroked-button color="warn" [ngClass]="{ 'desactive' : active}"
+                    class="h-10 w-44 bg-white text-sm focus:outline-none radius ubuntu">
+                    <mat-icon class="mr-3">save_alt</mat-icon>
+                    DESCARGAR
+                </button>
+                <div *ngIf="showTable" class="flex flex-row  ml-auto">
+                    <div *ngFor="let button of buttons">
+                        <button class="btn-performance focus:outline-none" mat-stroked-button>{{button.title}}</button>
+                    </div>
+                </div>
+            </div>
+            <app-performance-data-table [showTable]="showTable"></app-performance-data-table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,249 @@
+<div class="ubuntu py-2 px-4 w-full justify-end rounded inline-flex items-center cursor-default" (click)="onNoClick()">
+  <mat-icon class="mr-2">close</mat-icon>
+  <span>Salir</span>
+</div>
+<div class="flex w-full ubuntu">
+  <div class="w-80 h-36 space-y-10 justify-items-center content-center py-28">
+    <button [ngClass]="{'btnselection': isActivate1}" matRipple (click)="move(0);activateButton1()"
+      class="btn-select focus:outline-none space-x-4 shadow-lg rounded-3xl text-left flex h-20 radius h-14 w-72">
+      <div [ngClass]="{'iconselect': isActivate1, 'iconunselect': !isActivate1}"
+        class="ml-4 mt-4 w-10 h-10 rounded-full text-lg flex items-center mr-3">
+        <span class="text-grey-darker text-center w-full">1</span>
+      </div>
+      <span class="mt-3 text-lg">Asigna tu <br> campaña</span>
+    </button>
+    <button [ngClass]="{'btnselection': isActivate2}" mat-ripple (click)="move(1);activateButton2()"
+      class="btn-select focus:outline-none space-x-4 shadow-lg rounded-3xl text-left flex h-20 focus:outline-none radius h-14 w-72 btn-border">
+      <div [ngClass]="{'iconselect': isActivate2, 'iconunselect': !isActivate2}"
+        class="ml-4 mt-4 w-10 h-10 mr-3 rounded-full text-lg flex items-center">
+        <span class="text-grey-darker text-center w-full">2</span>
+      </div>
+      <span class="mt-3 text-lg">Especificaciones <br> de la campaña</span>
+    </button>
+    <button [ngClass]="{'btnselection': isActivate3}" matRipple (click)="move(2);activateButton3()"
+      class="btn-select space-x-4 shadow-lg rounded-3xl flex text-left h-20 focus:outline-none radius h-14 w-72 btn-border">
+      <div [ngClass]="{'iconselect': isActivate3, 'iconunselect': !isActivate3}"
+        class="ml-4 mt-4 w-10 h-10 mr-3 rounded-full text-lg flex items-center">
+        <span class="text-grey-darker text-center w-full">3</span>
+      </div>
+      <span class="mt-3 text-lg">Fechas y horas <br> de la campaña</span>
+    </button>
+  </div>
+  <mat-divider [vertical]="true" class="h-auto"></mat-divider>
+  <div class="h-36" style="width: 766px">
+    <mat-horizontal-stepper linear #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup" class="space-y-4">
+          <mat-card class="h-28 rounded-xl border shadow-md">
+            <h5 class="text-lg ubuntu">Asigne un nombre a la campaña que pueda reconocer</h5>
+            <mat-card-content>
+              <mat-form-field class="h-6" style="width: 530px" appearance="outline">
+                <mat-label>Nombre de campaña</mat-label>
+                <input matInput formControlName="firstCtrl" placeholder="Campaña nueva">
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
+          <mat-card class="rounded-xl border shadow-md">
+            <div class="flex justify-between">
+              <div>
+                <h1 class="text-lg ubuntu">Suba su archivo</h1>
+                <p class="text-xs ubuntu">Formato Excel</p>
+              </div>
+              <div>
+                <button mat-stroked-button color="warn"
+                  class="h-10 w-44 text-sm font-medium ubuntu bg-white focus:outline-none rounded-xl">
+                  <mat-icon class="mr-2">save_alt</mat-icon>
+                  PLANTILLA EXCEL
+                </button>
+              </div>
+            </div>
+            <mat-card-content class="mt-3">
+              <label
+                class="rounded-3xl w-full h-36 flex flex-col items-center border-dashed border-2 rounded-3xl border-indigo-300 px-4 py-6 text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer"
+                style="background-color: #ece9f5">
+                <svg class="text-indigo-700" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24"
+                  width="48px" fill="#716CAA">
+                  <path d="M0 0h24v24H0V0z" fill="none" />
+                  <path
+                    d="M20 6h-8l-2-2H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-1 8h-3v3h-2v-3h-3v-2h3V9h2v3h3v2z" />
+                </svg>
+                <span class="mt-2 text-base leading-normal text-center">Arrastra tu archivo o selecciona <br> desde tu
+                  ordenador</span>
+                <input #uploadFile (change)="upload($event)" type='file' class="hidden" [multiple]="multiple" />
+              </label>
+            </mat-card-content>
+            <p class="text-xs ubuntu">Archivo</p>
+            <!-- <button appDnd *ngIf="!files || files.length === 0" mat-stroked-button class="btn-upload w-full"
+              (click)="uploadFile.click()" (fileDropped)="onFileDropped($event)">
+              <div #dropZone class="flex items-center xl:justify-center">
+                <mat-icon>cloud_upload</mat-icon>
+                <div class="block ml-2 xl:ml-5 font-light">
+                  Arrastra aquí la imagen o selecciona para buscar en tu ordenador
+                </div>
+              </div>
+            </button> -->
+            <div class="w-full space-x-4 mt-3 text-left">
+              <div *ngIf="files && files.length > 0">
+                <div *ngFor="let file of files; let i = index" class="flex items-center w-full">
+                  <div class="text-lg mr-5">
+                    <span class="text-grey-darker text-center w-full"><img src="assets/img/excel.svg"></span>
+                  </div>
+                  <div class="w-full">
+                    <div class="flex items-center justify-between" [class.truncated-span]="multiple">
+                      <p class="text-xs ubuntu">{{ file.name }}</p>
+                      <div class="flex items-center">
+                        <p class="text-xs ubuntu mr-6">100%</p>
+                        <mat-icon (click)="removeFile(i)" class="text-red-500">highlight_off</mat-icon>
+                      </div>
+                    </div>
+                    <div class="flex items-center">
+                      <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+                      <mat-icon class="ml-2" style="color: #43E771">check_circle_outline</mat-icon>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full space-x-4 mt-3 text-left flex">
+              <div class="text-lg flex items-center">
+                <span class="text-grey-darker text-center w-full"><img src="assets/img/excel.svg"></span>
+              </div>
+              <div class="w-full">
+                <div class="flex items-center justify-between">
+                  <p class="text-xs ubuntu">Campaña de banco Falabella_v1.xls</p>
+                  <p class="text-xs ubuntu mr-12">100%</p>
+                </div>
+                <div class="flex items-center">
+                  <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+                  <mat-icon class="ml-2" style="color: #43E771">check_circle_outline</mat-icon>
+                </div>
+              </div>
+            </div>
+            <mat-card class="flex flex-row bg-red-100 mt-3 rounded-xl" *ngIf="hidden">
+              <p class="text-red-500 text-xs">Error 01 lorem ipsum dorel lorum lorem ipsum dorel lorumlorem ipsum dorel
+                lorumlorem ipsum dorel
+                lorumlorem ipsum dorel lorumlorem ipsum dorel lorumlorem ipsum dorel lorumlorem ipsum dorel lorumlorem
+                ipsum dorel lorum</p>
+              <mat-icon (click)="closeText()" class="text-red-500 cursor-pointer">close</mat-icon>
+            </mat-card>
+          </mat-card>
+          <div class="ml-60">
+            <button matStepperNext
+              class="w-48 h-11 flex items-center justify-center focus:outline-none border border-red-500 rounded-3xl text-red-500"
+              (click)="activateButton2()">Siguiente
+              <mat-icon class="ml-3">east</mat-icon>
+            </button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <div class="space-y-10 py-16">
+            <mat-card class="h-28 shadow-xl border rounded-3xl">
+              <div class="ml-10">
+                <p class="space-x-3 flex items-center"><span class="text-lg ubuntu text-primary">Seleccione el tipo de
+                    política de la
+                    campaña</span>
+                  <mat-icon class="mr-3">help</mat-icon>
+                </p>
+                <mat-card-content>
+                  <mat-form-field class="h-6" style="width: 465px" appearance="outline">
+                    <mat-label>Tipo de política</mat-label>
+                    <mat-select formControlName="secondCtrl">
+                      <mat-option *ngFor="let pol of politic" [value]="pol.value">
+                        {{pol.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </mat-card-content>
+              </div>
+            </mat-card>
+            <mat-card class="shadow-xl border rounded-3xl">
+              <div class="ml-10 flex space-x-10">
+                <div>
+                  <p class="space-x-2 flex items-center ubuntu"><span class="text-xs">Llamadas en paralelo</span>
+                    <mat-icon class="text-lg">info</mat-icon>
+                  </p>
+                  <mat-form-field appearance="outline" style="width: 92px">
+                    <mat-select value="1" formControlName="secondCtrl" placeholder="1">
+                      <mat-option value="1">1</mat-option>
+                      <mat-option value="2">2</mat-option>
+                      <mat-option value="3">3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <p class="space-x-2 flex items-center ubuntu"><span class="text-xs">Máximo de barridos</span>
+                    <mat-icon class="text-lg">info</mat-icon>
+                  </p>
+                  <mat-form-field floatLabel="never" appearance="outline" style="width: 92px">
+                    <mat-select value="1" formControlName="secondCtrl" placeholder="1">
+                      <mat-option value="1">1</mat-option>
+                      <mat-option value="2">2</mat-option>
+                      <mat-option value="3">3</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+          <div class="ml-60 mt-8">
+            <button matStepperNext
+              class="w-48 h-11 flex items-center justify-center focus:outline-none border border-red-500 rounded-3xl text-red-500"
+              (click)="activateButton3()">Siguiente
+              <mat-icon class="ml-3">east</mat-icon>
+            </button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <div class="flex w-full space-x-8">
+          <div class="w-96">
+            <p class="space-x-2 flex items-center"><span class="font-medium ubuntu">Selecciona la fecha</span>
+              <mat-icon>info</mat-icon>
+            </p>
+            <mat-form-field appearance="outline" style="width: 245px" color="warn">
+              <!-- <mat-label>Enter a date range</mat-label> -->
+              <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                <input matStartDate formControlName="start" placeholder="Desde">
+                <input matEndDate formControlName="end" placeholder="Hasta">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="picker" class="focus:outline-none"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+              <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+              <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="w-full h-96 ubuntu">
+            <h2 class="font-medium">Seleccionar los horarios(*)</h2>
+            <p class="text-xs">Error 01 lorem ipsum dorel lorumErrorError 01 lorem ipsum dorel lorumErrorError 01 lorem
+              ipsum dorel lorum</p>
+            <div class="flex mt-3 space-x-2" *ngFor="let item of selectedHours; let last = last">
+              <mat-card class="shadow-md border rounded-3xl">
+                <span class="text-sm font-bold">Hora de Inicio</span>
+                <input matInput type="time" [(ngModel)]="item.startTime">
+              </mat-card>
+              <mat-card class="shadow-md border rounded-3xl">
+                <span class="text-sm font-bold">Hora de Fin</span>
+                <input matInput type="time" [(ngModel)]="item.endTime" placeholder="Hello">
+              </mat-card>
+              <div class="mt-3 flex flex-col ml-2 -mr-8">
+                <mat-icon *ngIf="selectedHours.length > 1" (click)="removeSelectedHour()"
+                  class="cursor-pointer opacity-50 text-black mb-1">remove_circle</mat-icon>
+                <mat-icon *ngIf="last" (click)="addSelectedHour()" class="cursor-pointer text-black opacity-50">
+                  add_circle</mat-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ml-60 mt-8">
+          <button [mat-dialog-close]="true" matStepperNext
+            class="w-48 h-11 flex items-center justify-center focus:outline-none border border-red-500 rounded-3xl text-red-500">Siguiente
+            <!-- routerLink="/admin/dashboard/process-campaign" -->
+            <mat-icon class="ml-3">east</mat-icon>
+          </button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+</div>

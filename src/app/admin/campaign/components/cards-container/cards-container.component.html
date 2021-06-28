@@ -1,0 +1,26 @@
+<div class="flex items-center justify-between pb-8">
+    <mat-select placeholder="TIPO DE CANAL" class="shadow w-40 h-11 bg-white text-center font-medium ubuntu text-sm"
+        style="border-radius: 5px; padding-top: 13px; padding-right: 8px;">
+        <mat-option value="one">Option</mat-option>
+        <mat-option value="two">Option</mat-option>
+    </mat-select>
+    <mat-checkbox [(ngModel)]="answer" class="font-medium ubuntu" color="warn">Contesto</mat-checkbox>
+    <mat-checkbox [(ngModel)]="noAnswer" class="font-medium ubuntu" color="warn">No contesto</mat-checkbox>
+    <button (click)="getFilteredCards()" mat-raised-button class="focus:outline-none w-28 h-10">FILTRAR</button>
+</div>
+<div style="font-family: Ubuntu; overflow-y: hidden !important;">
+    <div class="flex flex-row justify-between pt-4 pb-8 px-6 rounded-t-2xl text-red-500 text-sm"
+        style="background: #FFFBFB;">
+        <p class="mr-3 w-36	">Nombre y Apellido</p>
+        <p class="ml-3 w-16">Estado</p>
+        <p class="mx-3">Monto</p>
+        <p class="">Eventos</p>
+        <p class="mx-3">Barridos</p>
+        <p class="mx-3"> </p>
+    </div>
+    <div style="background: #FFFBFB; overflow-y: auto; height: 505px;">
+        <div *ngFor="let card of filteredCards">
+            <app-cards [card]="card" [activate]="card.id === activate" (selectCardPerformance)="active($event)"></app-cards>
+        </div>
+    </div>
+</div>

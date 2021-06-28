@@ -1,0 +1,74 @@
+.notification-card {
+    @apply relative bg-white p-2 py-3 pl-3 flex flex-wrap items-center cursor-pointer w-full;
+    box-shadow: 10px 10px 30px rgba(174, 174, 192, 0.4);
+    border-radius: 12px;
+    transition: all 0.3s;
+    height: 75px;
+  
+    &__subMenu {
+
+      &--new-icon{
+        color: #903749;
+        background-color: #FFB8B8 !important;
+        border-radius: 20px;
+        opacity: 0.8;
+      }
+
+      &--old-icon{
+        color: #903749;
+        background-color: #FFB8B8 !important;
+        border-radius: 20px;
+        opacity: 0.8;
+      }
+
+    }
+  
+    &__state {
+  
+      &--new {
+        background-color: #FF7777;
+        color: #FFFFFF;
+      }
+
+      &--old {
+        color: #FFFFFF;
+        color: #3D3C3C;
+      }
+    }
+
+    &__display{
+
+      &--show{
+        display: block;
+      }
+
+      &--none{
+        display: none;
+      }
+    }
+  }
+  
+  .menuClass{
+    @apply block absolute top-5 right-1;
+  }
+
+  .mat-menu-item-submenu-trigger::after{
+      border-width: 0px !important;
+  }
+
+  .mat-menu-item-submenu-trigger {
+      padding-right: 0px !important;
+      border-radius: 60% !important;
+  }
+
+  .mat-menu-item:hover:not([disabled]).classBtn, .mat-menu-item-highlighted:not([disabled]).classBtn{
+    background: none !important;
+  }
+
+.classBtn{
+    max-width: 10% !important;
+    max-height: 3% !important;
+    height: 30px !important;
+    padding: 0 5px !important;
+    line-height: 10px !important;
+}

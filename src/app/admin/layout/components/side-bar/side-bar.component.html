@@ -1,0 +1,18 @@
+<ul class="main-sidenav" >
+    <a routerLink="/admin/dashboard/dashboard">
+        <div class="flex flex-row mx-2 my-3 pb-8">
+            <img style="min-width: 42px; min-height: 46px;" src="../../../../../assets/img/notifai-logo.svg" alt="notifai">
+            <img class="ml-3" src="../../../../../assets/img/logo-full.svg" alt="notifai">
+        </div>
+    </a>
+    <li *ngFor="let item of menuItems" class="my-1">
+        <a [routerLink]="item.route">
+            <button mat-button class="sidenav-item focus:outline-none" [ngClass]="{ 'current' : item.route === currentRoute }">
+                <div class="flex flex-row flex items-center py-2">
+                    <img [src]="item.icon" [alt]="item.name" class="">
+                    <span class="sidenav-item__label block ml-3">{{ item.name }}</span>
+                </div>
+            </button>
+        </a>
+    </li>
+</ul>

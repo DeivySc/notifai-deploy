@@ -1,0 +1,56 @@
+<div class="filtros-container">
+    <div class="block">
+        <div style="font-family: Ubuntu;" class="w-5/12 text-xs ml-6">Amet minim mollit non deserunt ullamco est sit
+            aliqua dolor do amet sint. Velit officia
+            consequat duis enim velit
+            mollit. Exercitation veniam consequat sunt nostrud amet.</div>
+        <mat-form-field appearance="outline" [style.fontSize.px]=12 class="w-2/6 mt-4 ml-5">
+            <mat-label style="font-family: Ubuntu;">Buscar Campaña</mat-label>
+            <input style="font-family: Ubuntu;" matInput [formControl]="myControl" [matAutocomplete]="auto"
+                placeholder="Campaña Id">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option style="font-family: Ubuntu;" [style.fontSize.px]=12
+                    *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                </mat-option>
+            </mat-autocomplete>
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </div>
+</div>
+<div class="text-black bg-white pt-3">
+    <h6 style="font-family: UbuntuMono;" class="font-semibold text-sm ml-10 mt-5">Campaña 01-35668</h6>
+    <mat-card class="m-5">
+        <h6 style="font-family: UbuntuMono;" class="font-semibold ml-5 text-xs text-gray-500">Tipo de reporte</h6>
+        <h6 style="font-family: UbuntuMono;" class="font-semibold ml-5 text-base text-black">Deudas</h6>
+        <canvas baseChart height="60" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+            [plugins]="barChartPlugins" [legend]="barChartLegend" [colors]="barchartColors" [chartType]="barChartType">
+        </canvas>
+    </mat-card>
+    <div class="flex">
+        <div class="flex-1 w-3/6">
+            <mat-card class="m-5">
+                <h6 style="font-family: UbuntuMono;" class="font-semibold ml-5 text-xs text-gray-500">Tipo de reporte
+                </h6>
+                <h6 style="font-family: UbuntuMono;" class="font-semibold ml-5 text-base text-black">Tendencia últimos
+                    meses</h6>
+                <canvas baseChart height="180" [datasets]="bar2ChartData" [labels]="bar2ChartLabels"
+                    [options]="barChartOptions" [plugins]="barChartPlugins" [colors]="bar2chartColors"
+                    [legend]="barChartLegend" [chartType]="barChartType">
+                </canvas>
+            </mat-card>
+        </div>
+        <div class="flex-1 w-3/6">
+            <mat-card class="m-5">
+                <h6 style="font-family: UbuntuMono;" class="font-semibold ml-5 text-xs text-gray-500">Tipo de reporte
+                </h6>
+                <h6 style="font-family: UbuntuMono;" class="font-semibold ml-5 text-base text-black">Estado de deudas
+                </h6>
+                <canvas baseChart height="180" [data]="pieChartData" [labels]="pieChartLabels"
+                    [chartType]="pieChartType" [options]="pieChartOptions" [colors]="piechartColors"
+                    [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+                </canvas>
+            </mat-card>
+        </div>
+    </div>
+</div>

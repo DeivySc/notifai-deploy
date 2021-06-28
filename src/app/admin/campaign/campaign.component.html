@@ -1,0 +1,61 @@
+<div class="mt-10 ubuntu">
+    <div class="flex flex-row mx-5">
+        <div class="w-7/12 flex flex-row">
+            <p class="">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia
+                consequat duis
+                enim
+                velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+            <div class="pl-5">
+                <button mat-stroked-button color="warn" class="h-10 w-44 bg-white text-sm focus:outline-none radius ubuntu">
+                    <mat-icon class="mr-1">save_alt</mat-icon>
+                    PLANTILLA EXCEL
+                </button>
+            </div>
+        </div>
+        <div class="ml-auto mr-5">
+            <button (click)="openDialogCampaign()" mat-raised-button
+                class="focus:outline-none radius text-sm h-14 w-44 btn-border ubuntu">
+                <mat-icon class="mr-1 text-red-500">add_circle</mat-icon>
+                CREAR CAMPAÑA
+            </button>
+        </div>
+    </div>
+    <div class="py-10 mx-5">
+        <div class="flex items-center">
+            <h4 class="text-3xl mr-10">Mis campañas</h4>
+            <mat-slide-toggle (change)="showAvailablesOnly($event)" color="warn" checked="true"
+                class="font-medium text-sm">Activo</mat-slide-toggle>
+        </div>
+        <div class="flex flex-row my-8">
+            <div *ngFor="let button of buttons">
+                <button class="btn-campaign focus:outline-none" mat-stroked-button>{{button.title}}</button>
+            </div>
+        </div>
+        <div class="grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+            <div *ngFor="let campaign of filteredStateCampaign" class="mr-5 xl:mr-3 2xl:mr-5 mb-5">
+                <mat-card class="dimension 2xl:w-72 h-64 ubuntu radius cursor-pointer" routerLink="/admin/dashboard/process-campaign">
+                    <p class="font-medium flex items-center">Nombre de la empresa
+                        <mat-icon class="text-lg ml-auto state {{campaign.state}}">fiber_manual_record</mat-icon>
+                    </p>
+                    <h5 class="text-2xl my-4">Campaña de captación de banco falabella</h5>
+                    <p class="text-sm font-bold umono">5000 usuarios</p>
+                    <div class="flex items-center justify-between mt-3 mb-1">
+                        <p class="text-xs umono w-28">Inicio: 11/02/21
+                            Fin: 30/02/21</p>
+                        <div class="flex items-center">
+                            <button mat-icon-button class="focus:outline-none">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button class="focus:outline-none">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-xs font-medium mb-1">Total: 2500</p>
+                    <mat-progress-bar class="h-2 rounded-lg" mode="determinate" value="45" color="warn">
+                    </mat-progress-bar>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<ng-container>
+    <mat-sidenav-container>
+        <mat-sidenav mode="side" opened [fixedInViewport]="true" [fixedTopGap]="0" [fixedBottomGap]="0">
+            <app-side-bar [menuItems]="menuItems" style="width: 84px;"></app-side-bar>
+        </mat-sidenav>
+        <mat-sidenav-content class="main-sidenav-content">
+            <app-top-bar></app-top-bar>
+            <router-outlet></router-outlet>
+            <!-- <app-footer ></app-footer> -->
+            <!-- *ngIf="showFooter" -->
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</ng-container>

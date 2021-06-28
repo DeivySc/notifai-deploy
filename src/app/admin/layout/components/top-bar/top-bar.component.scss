@@ -1,0 +1,36 @@
+.top-bar {
+    background: #F9FBFC;
+    box-shadow: 10px 10px 30px rgba(174, 174, 192, 0.4);
+    position: relative;
+    z-index: 3;
+}
+
+::ng-deep.mat-menu-content:not(:empty) {
+    padding-top: 0px !important;
+}
+
+::ng-deep.mat-menu-panel{
+    overflow: hidden !important;
+    overflow-y: auto !important;
+  
+    &::-webkit-scrollbar{
+      width: 5px;
+    }
+  }
+    
+.user-avatar {
+    @apply block;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 40%;
+    object-position: center;
+}
+
+.header-notification {
+    box-shadow: 10px 10px 30px rgba(174, 174, 192, 0.4);
+}
+    
+::ng-deep .customize {
+    min-width: 190px !important;
+}

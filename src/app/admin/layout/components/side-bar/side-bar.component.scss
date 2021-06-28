@@ -1,0 +1,32 @@
+.main-sidenav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background: #FFFFFF;
+    width: 100%;
+    max-width: 65px;
+    padding: 5px;
+    box-shadow: 10px 10px 30px rgba(174, 174, 192, 0.4);
+    transition: all 0.25s;
+    overflow: hidden;
+  
+    &:hover {
+      max-width: 199px;
+    }
+}
+
+.sidenav-item {
+    width: 100%;
+    padding-block: 5px;
+  
+    &__label {
+        overflow: hidden;
+        font-weight: 500;
+        font-size: 14px;
+    }
+  
+    &.current:focus {
+        background: #FFE9E9;
+    }
+}

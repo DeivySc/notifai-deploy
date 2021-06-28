@@ -1,0 +1,51 @@
+<header class="top-bar py-1">
+    <div class="margin-xl px-5">
+        <div class="flex flex-row">
+            <div *ngIf="showBackBtn" class="flex flex-row items-center">
+                <img src="../../../../assets/img/logo-full.svg" alt="logo" >
+                <!-- <a routerLink="/dashboard" class="block mt-2 mx-2 flex flex-row">
+                    <button mat-icon-button class="mt-1 text-secondary">
+                        <mat-icon>arrow_back_ios</mat-icon>
+                    </button>
+                    <h4 class="text-secondary mt-2 font-weight-normal">Inicio</h4>
+                </a> -->
+            </div>
+            <div class="flex items-center ml-auto mx-2">
+                <button mat-icon-button [matMenuTriggerFor]="note" class="focus:outline-none">
+                  <mat-icon matBadge="+4" matBadgeColor="warn">notifications_none</mat-icon>
+                </button>
+                <mat-menu #note="matMenu" xPosition="before" class="w-full notifications">
+                  <div class="header-notification px-5 flex flex-row flex justify-between bg-white">
+                    <h4 class="font-normal text-2xl py-2">Notificaciones</h4>
+                  </div>
+                  <app-notifications></app-notifications>
+                </mat-menu>
+              </div>
+            <div class=" flex flex-wrap">
+                <button class="flex flex-wrap focus:outline-none" mat-button [matMenuTriggerFor]="userMenu">
+                    <div class="flex items-center py-2">
+                        <p class="font-medium">Hola, Luis</p>
+                        <img class="user-avatar ml-3"
+                            src="https://radionacional.com.pe/sites/default/files/styles/note/public/noticia-14_6.jpg?itok=DJrMq3aw">
+                        <mat-icon>arrow_drop_down</mat-icon>
+                    </div>
+                </button>
+                <mat-menu #userMenu="matMenu" class="customize">
+                    <button routerLink="/admin/dashboard/profile" mat-menu-item class="focus:outline-none">
+                        <mat-icon class="color-icon">account_circle</mat-icon>
+                        Mi Cuenta
+                    </button>
+                    <button mat-menu-item class="focus:outline-none">
+                        <mat-icon class="color-icon">vpn_key</mat-icon>
+                        Cambiar Contraseña
+                    </button>
+                    <a routerLink="/auth/login">
+                        <button mat-menu-item class="focus:outline-none">
+                            <mat-icon class="color-icon">power_settings_new</mat-icon>
+                            Cerrar Sesión
+                        </button></a>
+                </mat-menu>
+            </div>
+        </div>
+    </div>
+</header>

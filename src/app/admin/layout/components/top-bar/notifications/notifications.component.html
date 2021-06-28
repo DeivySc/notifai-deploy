@@ -1,0 +1,20 @@
+<div (click)="$event.stopPropagation()" class="hidde-scroll px-2 overflow-x-hidden 2xl:px-4" style="max-height: 620px;">
+    <div class="doctors-search-results">
+        <p class="text-sm mt-3 mb-2 font-meidum">Nuevos</p>
+        <div *ngFor="let newNotification of filteredNewNotifications" class="mb-2">
+            <app-new-cards
+            [newNotification]="newNotification"
+            [selected]="newNotification.id === selectedNewNotificationId"
+            (selectNewNotificationEvent)="updateSelectedNewNotificationId($event)">
+          </app-new-cards>
+        </div>
+        <p class="text-sm mt-3 mb-2 font-meidum">Antiguos</p>
+        <div *ngFor="let oldNotification of filteredOldNotifications" class="mb-2">
+            <app-old-cards
+            [oldNotification]="oldNotification"
+            [selected]="oldNotification.id === selectedOldNotificationId"
+            (selectOldNotificationEvent)="updateSelectedOldNotificationId($event)">
+          </app-old-cards>
+        </div>
+    </div>
+</div>

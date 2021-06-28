@@ -1,0 +1,28 @@
+<mat-card class="card"  [ngClass]="{ 'selected' : selected }" (click)="selectCardEvent.emit(entity.id)">
+    <div>
+        <h5 class="text-2xl ubuntu">Nombre de la entidad</h5>
+        <div class="flex items-center my-4">
+            <mat-icon class="text-base state {{entity.state}}">fiber_manual_record</mat-icon>
+            <p class="-ml-2">Campañas:25</p>
+            <mat-icon class="text-base ml-5 state {{entity.state2}}">fiber_manual_record</mat-icon>
+            <p class="-ml-2">Campañas:12</p>
+        </div>
+        <p class="umono text-xs text-gray-300">15,000</p>
+        <p class="ubuntu text-xs text-gray-300">Llamadas completadas</p>
+        <p class="ubuntu text-xs text-gray-200 my-1">Promedio</p>
+        <div>
+            <table>
+                <tr>
+                    <th>5%</th>
+                    <th>50%</th>
+                    <th>01</th>
+                </tr>
+                <tr>
+                    <td>Cobertura</td>
+                    <td>Efectividad</td>
+                    <td>Intensidad</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</mat-card>

@@ -1,0 +1,38 @@
+.cards {
+    font-size: 12px;
+    font-family: Ubuntu;
+    width: 95%;
+    height: 80px;
+    border-radius: 20px !important;
+    margin-inline: auto;
+    margin-top: 10px;
+    box-shadow: 0px 1px 8px -1px rgb(243 11 11 / 20%), 0px 1px 1px 0px rgb(255 2 2 / 14%), 0px 1px 3px 0px rgb(242 6 6 / 12%) !important;
+}
+
+.state {
+    &.on {
+        color: #75FFBD;
+    }
+
+    &.pending {
+        color: #FFE175;
+    }
+
+    &.off {
+        color: #FF7575;
+    }
+
+    &.suspended {
+        color: #7B7B7B;
+    }
+}
+
+.inactive {
+    background: #E7E7E7;
+    color: #7B7B7B !important;
+    box-shadow: none !important;
+    opacity: 50%;
+    border: none !important;
+    cursor: inherit !important;
+}
+

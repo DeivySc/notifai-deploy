@@ -1,0 +1,169 @@
+<div class="filtros-container bg-gray-100 pb-10">
+    <div style="font-family: Ubuntu;" class="w-4/12 text-xs ml-8">Amet minim mollit non deserunt ullamco est sit
+        aliqua dolor do amet sint. Velit officia
+        consequat duis enim velit
+        mollit. Exercitation veniam consequat sunt nostrud amet.</div>
+    <div class="block mr-5">
+        <ng-template [ngIf]="createuser == true">
+            <button (click)="onPress()" mat-stroked-button color="primary"
+                class="border border-red-600 bg-white text-black px-6 py-3 rounded-md focus:outline-none">
+                <mat-icon class="text-red-500 mr-2">save</mat-icon> Guardar
+            </button>
+        </ng-template>
+        <ng-template [ngIf]="createuser == false">
+            <button (click)="onPress()" mat-stroked-button color="primary"
+                class="border border-red-600 bg-white text-black px-6 py-3 rounded-md focus:outline-none">
+                <mat-icon class="text-red-500 mr-2">add_circle</mat-icon> CREAR USUARIO
+            </button>
+        </ng-template>
+    </div>
+</div>
+<ng-template [ngIf]="createuser == true">
+    <div class="flex justify-between pb-48 bg-white">
+        <div class="w-3/4">
+            <div class="flex justify-start mt-8 ml-12">
+                <div style="font-family: Ubuntu;" class="text-sm pt-1">Añadir un nuevo usuario</div>
+                <mat-icon class="ml-3 text-xl"
+                    matTooltip="Error 01 lorem ipsum dorel lorum lorem ipsum dorel lorumlorem ipsum dorel lorumlorem ipsum dorel lorumlorem ipsum dorel lorumlorem ipsum dorel lorumlorem ipsum dorel lorumlorem ipsum dorel lorumlorem ipsum dorel lorum">
+                    info</mat-icon>
+            </div>
+            <div class="flex justify-start ml-11 mt-8">
+                <div class="w-2/6">
+                    <mat-form-field class="w-5/6" appearance="outline">
+                        <mat-label style="font-family: Ubuntu;" class="text-sm">Seleccione tipo de perfil</mat-label>
+                        <mat-select style="font-family: Ubuntu;" class="text-sm">
+                            <mat-option *ngFor="let rol of rols" [value]="rol.value" style="font-family: Ubuntu;"
+                                class="text-sm">
+                                {{rol.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="w-2/6">
+                    <mat-form-field class="w-11/12 mb-1" appearance="outline">
+                        <mat-label style="font-family: Ubuntu;" class="text-xs">Ingresa el nombre</mat-label>
+                        <input style="font-family: Ubuntu;" matInput [formControl]="nameFormControl"
+                            class="text-xs focus:outline-none" placeholder="Nombre...">
+                        <mat-error style="font-family: Ubuntu;" *ngIf="nameFormControl.hasError('required')"> Nombre es
+                            <strong>requerido</strong> </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="w-11/12 mb-1" appearance="outline">
+                        <mat-label style="font-family: Ubuntu;" class="text-xs">Ingresa el apellido</mat-label>
+                        <input style="font-family: Ubuntu;" matInput [formControl]="surnameFormControl"
+                            class="text-xs focus:outline-none" placeholder="Apellido...">
+                        <mat-error style="font-family: Ubuntu;" *ngIf="surnameFormControl.hasError('required')">
+                            Apellido es <strong>requerido</strong> </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="w-11/12 mb-1" appearance="outline">
+                        <mat-label style="font-family: Ubuntu;" class="text-xs">Ingresa el email</mat-label>
+                        <input style="font-family: Ubuntu;" matInput [formControl]="emailFormControl"
+                            class="text-xs focus:outline-none" placeholder="Email...">
+                        <mat-error style="font-family: Ubuntu;"
+                            *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                            Ingrese un email valido </mat-error>
+                        <mat-error style="font-family: Ubuntu;" *ngIf="emailFormControl.hasError('required')"> Email es
+                            <strong>requerido</strong> </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="w-11/12 mb-2" appearance="outline">
+                        <mat-label style="font-family: Ubuntu;" class="text-xs">Ingresa el teléfono</mat-label>
+                        <input style="font-family: Ubuntu;" matInput [formControl]="phoneFormControl"
+                            class="text-xs focus:outline-none" placeholder="Telefono...">
+                        <mat-error style="font-family: Ubuntu;" *ngIf="phoneFormControl.hasError('required')"> Teléfono
+                            es <strong>requerido</strong> </mat-error>
+                    </mat-form-field>
+                    <div class="w-11/12 flex justify-start h-12">
+                        <mat-form-field appearance="outline" class="w-9/12">
+                            <mat-label style="font-family: Ubuntu;" class="text-xs">Ingresa contraseña</mat-label>
+                            <input matInput style="font-family: Ubuntu;" [(ngModel)]="password"
+                                [formControl]="passwFormControl" class="text-xs focus:outline-none"
+                                placeholder="Contraseña...">
+                            <button mat-icon-button (click)="onCopy()" class="focus:outline-none" matSuffix>
+                                <mat-icon class="text-gray-500">file_copy</mat-icon>
+                            </button>
+                            <mat-error style="font-family: Ubuntu;" *ngIf="passwFormControl.hasError('required')">
+                                Contraseña es <strong>requerido</strong> </mat-error>
+                        </mat-form-field>
+                        <div class="block w-3/12 h-full">
+                            <button mat-flat-button (click)="onGenerate()" style="font-family: Ubuntu; height: 60px;"
+                                class="mt-1 px-0.5 text-xs w-full bg-red-100 focus:outline-none">Generar</button>
+                        </div>
+                    </div>
+                    <div class="w-11/12 flex justify-between mt-12">
+                        <div style="font-family: Ubuntu;" class="text-xs">Enviar un correo al usuario con las
+                            instrucciones de acceso.</div>
+                        <mat-slide-toggle [checked]="checked" color="warn"></mat-slide-toggle>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-1/4 mt-8 mr-20 ml-10">
+            <div style="font-family: Ubuntu;" class="text-sm pb-6 border-b-2 border-gray-400 text-gray-400">Tienes
+                alguna duda</div>
+            <div style="font-family: Ubuntu;" class="text-sm pt-4">Amet minim mollit non deserunt ullamco est sit aliqua
+                dolor do amet sint. Velit officia consequat duis enim velit
+                mollit. Exercitation veniam consequat sunt nostrud amet.</div>
+        </div>
+    </div>
+</ng-template>
+<ng-template [ngIf]="createuser == false">
+    <div class="block bg-gray-100">
+        <div class="flex justify-end">
+            <div class="bg-white rounded-lg w-1/12 h-7 mr-24 mt-1 flex justify-between">
+                <button (click)="bajarPagina()" class="text-center h-full w-6 text-sm focus:outline-none"
+                    mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                    <mat-icon>chevron_left</mat-icon>
+                </button>
+                <div class="mt-1">{{ page }}</div>
+                <button (click)="subirPagina()" class="text-center h-full w-6 text-sm focus:outline-none"
+                    mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                    <mat-icon>chevron_right</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="grid grid-flow-row grid-cols-3 gap-4 pl-8 pr-20 pt-6 pb-6">
+            <mat-card *ngFor="let user of usersp" class="rounded-3xl shadow-xl">
+                <div class="flex justify-between">
+                    <div class="pt-1 pl-1">
+                        <div style="font-family: UbuntuMono;" class="text-xs text-gray-600">Ultima Conexión:</div>
+                        <div style="font-family: UbuntuMono;" class="text-xs text-gray-600">2021/02/20 13:80</div>
+                    </div>
+                    <button mat-icon-button [matMenuTriggerFor]="userops" class="focus:outline-none">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #userops="matMenu" xPosition="before" class="rounded-lg">
+                        <button mat-menu-item class="focus:outline-none h-7 flex justify-start">
+                            <mat-icon aria-hidden="false" class="text-xl text-gray-700">edit</mat-icon>
+                            <div class="text-xs mt-2 pr-4">Editar</div>
+                        </button>
+                        <button mat-menu-item class="focus:outline-none h-7 flex justify-start">
+                            <mat-icon aria-hidden="false" class="text-xl text-gray-700">delete</mat-icon>
+                            <div class="text-xs mt-2 pr-4">Borrar</div>
+                        </button>
+                    </mat-menu>
+                </div>
+                <div class="block text-center pt-5">
+                    <img class="block mx-auto rounded-full w-16 h-16" src="assets/img/perfil.png">
+                    <div style="font-family:Ubuntu;" class="text-xs text-red-600 mt-2">{{user.rol}}</div>
+                    <div style="font-family:Ubuntu;" class="text-base text-gray-600 mt-2 font-medium">{{user.name}}
+                    </div>
+                    <div class="pt-9 pb-2 flex justify-center">
+                        <div class="block">
+                            <div class="flex justify-start">
+                                <div class="mr-4 rounded-full text-red-600 bg-red-200 w-8 h-8">
+                                    <mat-icon aria-hidden="false" class="text-lg">email</mat-icon>
+                                </div>
+                                <div style="font-family:Ubuntu;" class="text-gray-600 text-base">juan@mdp.com.pe</div>
+                            </div>
+                            <div class="flex justify-start mt-3">
+                                <div class="mr-4 rounded-full text-red-600 bg-red-200 w-8 h-8">
+                                    <mat-icon aria-hidden="false" class="text-lg">phone_android</mat-icon>
+                                </div>
+                                <div style="font-family:Ubuntu;" class="text-gray-600 text-base">994319988</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</ng-template>

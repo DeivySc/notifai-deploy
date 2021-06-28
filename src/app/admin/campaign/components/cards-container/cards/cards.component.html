@@ -1,0 +1,30 @@
+<mat-card (click)="selectCardPerformance.emit(card.id)" class="cards {{card.stage}} cursor-pointer" [ngClass]="{'border border-red-500' : activate}">
+    <div class="flex items-center justify-between ">
+        <p style="width: 150px;">{{card.name}}</p>
+        <div class="flex items-center">
+            <mat-icon class="text-base state {{card.color}}">fiber_manual_record</mat-icon>
+            <span>{{card.state}}</span>
+        </div>
+        <p class="w-14 umono">{{card.monto}}</p>
+        <button color="warn" mat-icon-button class="focus:outline-none w-12 mr-3">
+            <mat-icon class="{{card.stage}}">{{card.icon}}</mat-icon>
+        </button>
+        <p class="umono w-5 ml-3">{{card.barridos}}</p>
+        <div>
+            <button class="focus:outline-none" mat-icon-button [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button class="focus:outline-none" mat-menu-item>
+                    <mat-icon class="text-red-500">call</mat-icon>
+                    <span>Llamar</span>
+                </button>
+                <button class="focus:outline-none" mat-menu-item>
+                    <mat-icon class="text-red-500">highlight_off</mat-icon>
+                    <span>Suspender</span>
+                </button>
+            </mat-menu>
+        </div>
+    </div>
+</mat-card>

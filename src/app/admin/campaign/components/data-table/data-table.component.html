@@ -1,0 +1,90 @@
+<div class="container-table">
+    <div class="flex flex-row py-4 px-6 rounded-tl-2xl" style="background: #FFFBFB;">
+        <div>
+            <h3 class="font-medium">FELIX VARGAS CHUMPITAZ</h3>
+            <p class="text-sm">Móvil: 994319990</p>
+        </div>
+        <div class="ml-auto mr-12">
+            <button color="warn" mat-icon-button class="focus:outline-none">
+                <mat-icon>email</mat-icon>
+            </button>
+            <button (click)="openDialogCalled()" mat-icon-button class="focus:outline-none bg-red-500 text-white">
+                <mat-icon>call</mat-icon>
+            </button>
+            <button color="warn" mat-icon-button class="focus:outline-none">
+                <mat-icon>chat</mat-icon>
+            </button>
+        </div>
+        <button class="focus:outline-none" mat-icon-button [matMenuTriggerFor]="menu"
+            aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button class="focus:outline-none" mat-menu-item>
+                <mat-icon>dialpad</mat-icon>
+                <span>Redial</span>
+            </button>
+            <button class="focus:outline-none" mat-menu-item disabled>
+                <mat-icon>voicemail</mat-icon>
+                <span>Check voice mail</span>
+            </button>
+        </mat-menu>
+    </div>
+    <div class="pt-5 px-4 overflow-y-scroll" style="height: 500px;">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full">
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox color="warn" (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                    </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-checkbox color="warn" (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                        [aria-label]="checkboxLabel(row)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                <td mat-cell  class="umono" *matCellDef="let element"> {{element.date}} </td>
+            </ng-container>
+            <ng-container matColumnDef="hour">
+                <th mat-header-cell *matHeaderCellDef> Hora </th>
+                <td mat-cell class="umono" *matCellDef="let element"> {{element.hour}} </td>
+            </ng-container>
+            <ng-container matColumnDef="time">
+                <th mat-header-cell *matHeaderCellDef> Duración </th>
+                <td mat-cell  class="umono" *matCellDef="let element"> {{element.time}} </td>
+            </ng-container>
+            <ng-container matColumnDef="state">
+                <th mat-header-cell *matHeaderCellDef> Estado </th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-icon class="text-base state {{element.state}}">fiber_manual_record</mat-icon>
+                    {{element.state}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="play">
+                <th mat-header-cell *matHeaderCellDef> Reproducir </th>
+                <td mat-cell *matCellDef="let element">
+                    <button (click)="changeStateTable()" color="warn" mat-icon-button class="focus:outline-none ml-3">
+                        <mat-icon *ngIf="playTable">play_arrow</mat-icon>
+                        <mat-icon *ngIf="!playTable">pause</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="download">
+                <th mat-header-cell *matHeaderCellDef> Descargar </th>
+                <td mat-cell *matCellDef="let element">
+                    <button color="warn" mat-icon-button class="focus:outline-none mx-auto ml-2">
+                        <mat-icon>get_app</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+            </tr>
+        </table>
+    </div>
+</div>

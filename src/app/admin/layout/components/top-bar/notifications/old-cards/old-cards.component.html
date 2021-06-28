@@ -1,0 +1,24 @@
+<div class="notification-card" [ngClass]="'notification-card__state--' + oldNotification.state"
+    (click)="selectOldNotificationEvent.emit(oldNotification.id)">
+    <div class="flex flex-row flex items-center ">
+        <mat-icon class="mr-3">{{oldNotification.icon}}</mat-icon>
+        <div class="text-xs w-72 font-bold">
+            <p>{{oldNotification.time}}</p>
+            <p>{{oldNotification.content}}</p>
+        </div>
+        <button class="classBtn" mat-menu-item [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon class="classMenu" [ngClass]="'notification-card__subMenu--' + oldNotification.subMenu">more_horiz
+            </mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" xPosition="after" class="text-sm">
+            <button mat-menu-item (click)="openSnackBar()">
+                <mat-icon>delete</mat-icon>
+                <span>Eliminar</span>
+            </button>
+            <button mat-menu-item (click)="openSnackBar()">
+                <mat-icon>notifications_off</mat-icon>
+                <span>Desactivar</span>
+            </button>
+        </mat-menu>
+    </div>
+</div>
